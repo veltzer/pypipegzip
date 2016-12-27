@@ -22,6 +22,7 @@ output = subprocess.check_output([
     "{PIP}".format(**vars()),
     "show",
     "{module}".format(**vars()),
-])
-#grep -e "^Version"
-print(output)
+]).decode()
+for line in output.split("\n"):
+    if line.startswith("Version"):
+        print(line)
