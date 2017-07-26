@@ -22,10 +22,12 @@ sys     4m17.796s
 import subprocess
 import io
 import gzip
+from typing import Any
 
 
 # noinspection PyShadowingBuiltins
-def open(filename: str, mode="rb", use_process=True, encoding=None):
+def open(filename, mode="rb", use_process=True, encoding=None):
+    # type: (str, str, bool, str) -> Any
     if "r" in mode:
         if use_process:
             args = [
@@ -40,6 +42,12 @@ def open(filename: str, mode="rb", use_process=True, encoding=None):
                 return stdout
             raise ValueError("please specify t or b in mode")
         else:
-            return gzip.open(filename, encoding=encoding, mode=mode)
+            # python 2.7
+            return gzip.open(filename, mode=mode)
+            # python 3
+            # return gzip.open(filename, encoding=encoding, mode=mode)
     if "w" in mode:
-        return gzip.open(filename, encoding=encoding, mode=mode)
+        # python 3
+        # return gzip.open(filename, encoding=encoding, mode=mode)
+        # python 2.7
+        return gzip.open(filename, mode=mode)
