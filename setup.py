@@ -16,6 +16,5 @@ setuptools.setup(
         'Programming Language :: Python :: 2',
     ],
     keywords='pipe pipeline gzip read speed pypipegzip',
-    package_dir={'': 'src'},
-    packages=setuptools.find_packages('src'),
+    packages=setuptools.find_packages(),
 )
