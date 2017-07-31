@@ -38,7 +38,10 @@ def open(filename, mode="rb", use_process=True, encoding=None):
             if "b" in mode:
                 return process.stdout
             if "t" in mode:
-                stdout = io.TextIOWrapper(process.stdout, encoding=encoding)
+                # python 2.7
+                stdout = io.TextIOWrapper(process.stdout)
+                # python 3
+                # stdout = io.TextIOWrapper(process.stdout, encoding=encoding)
                 return stdout
             raise ValueError("please specify t or b in mode")
         else:
