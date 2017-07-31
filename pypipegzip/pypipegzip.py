@@ -18,14 +18,13 @@ real    3m19.863s
 user    32m2.292s
 sys     4m17.796s
 """
-
-import subprocess
-import io
 import gzip
+import subprocess
+
 from typing import Any
 
 
-# noinspection PyShadowingBuiltins
+# noinspection PyShadowingBuiltins, PyUnusedLocal
 def open(filename, mode="rb", use_process=True, encoding=None):
     # type: (str, str, bool, str) -> Any
     if "r" in mode:
@@ -39,10 +38,9 @@ def open(filename, mode="rb", use_process=True, encoding=None):
                 return process.stdout
             if "t" in mode:
                 # python 2.7
-                stdout = io.TextIOWrapper(process.stdout)
+                return process.stdout
                 # python 3
-                # stdout = io.TextIOWrapper(process.stdout, encoding=encoding)
-                return stdout
+                # return io.TextIOWrapper(process.stdout, encoding=encoding)
             raise ValueError("please specify t or b in mode")
         else:
             # python 2.7
