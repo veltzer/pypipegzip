@@ -24,6 +24,12 @@ import subprocess
 
 from typing import Any
 
+import sys
+
+
+def is_2():
+    return sys.version_info[0] == 2
+
 
 # noinspection PyShadowingBuiltins, PyUnusedLocal
 def open(filename, mode="rb", use_process=True, encoding='utf-8'):
@@ -38,18 +44,19 @@ def open(filename, mode="rb", use_process=True, encoding='utf-8'):
             if "b" in mode:
                 return process.stdout
             if "t" in mode:
-                # python 2.7
-                return codecs.getreader(encoding=encoding)(process.stdout)
-                # python 3
-                # return io.TextIOWrapper(process.stdout, encoding=encoding)
+                if is_2():
+                    return codecs.getreader(encoding=encoding)(process.stdout)
+                else:
+                    import io
+                    return io.TextIOWrapper(process.stdout, encoding=encoding)
             raise ValueError("please specify t or b in mode")
         else:
-            # python 2.7
-            return gzip.open(filename, mode=mode)
-            # python 3
-            # return gzip.open(filename, encoding=encoding, mode=mode)
+            if is_2():
+                return gzip.open(filename, mode=mode)
+            else:
+                return gzip.open(filename, encoding=encoding, mode=mode)
     if "w" in mode:
-        # python 3
-        # return gzip.open(filename, encoding=encoding, mode=mode)
-        # python 2.7
-        return gzip.open(filename, mode=mode)
+        if is_2():
+            return gzip.open(filename, mode=mode)
+        else:
+            return gzip.open(filename, encoding=encoding, mode=mode)
