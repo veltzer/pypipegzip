@@ -18,11 +18,10 @@ real    3m19.863s
 user    32m2.292s
 sys     4m17.796s
 """
-import codecs
 import gzip
 import subprocess
 
-from typing import Any
+from typing import Any, Union
 
 import sys
 
@@ -32,8 +31,8 @@ def is_2():
 
 
 # noinspection PyShadowingBuiltins, PyUnusedLocal
-def open(filename, mode="rb", use_process=True, encoding='utf-8'):
-    # type: (str, str, bool, str) -> Any
+def open(filename, mode="rb", use_process=True, encoding='utf-8', newline=None):
+    # type: (str, str, bool, str, Union[str, None]) -> Any
     if "r" in mode:
         if use_process:
             args = [
@@ -45,18 +44,21 @@ def open(filename, mode="rb", use_process=True, encoding='utf-8'):
                 return process.stdout
             if "t" in mode:
                 if is_2():
-                    return codecs.getreader(encoding=encoding)(process.stdout)
+                    import io
+                    return io.open(process.stdout, encoding=encoding, newline=newline)
+                    # import codecs
+                    # return codecs.getreader(encoding=encoding)(process.stdout)
                 else:
                     import io
-                    return io.TextIOWrapper(process.stdout, encoding=encoding)
+                    return io.TextIOWrapper(process.stdout, encoding=encoding, newline=newline)
             raise ValueError("please specify t or b in mode")
         else:
             if is_2():
-                return gzip.open(filename, mode=mode)
+                return gzip.open(filename, mode=mode, newline=newline)
             else:
-                return gzip.open(filename, encoding=encoding, mode=mode)
+                return gzip.open(filename, encoding=encoding, mode=mode, newline=newline)
     if "w" in mode:
         if is_2():
-            return gzip.open(filename, mode=mode)
+            return gzip.open(filename, mode=mode, newline=newline)
         else:
-            return gzip.open(filename, encoding=encoding, mode=mode)
+            return gzip.open(filename, encoding=encoding, mode=mode, newline=newline)
