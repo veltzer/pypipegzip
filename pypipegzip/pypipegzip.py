@@ -45,7 +45,7 @@ def open(filename, mode="rb", use_process=True, encoding='utf-8', newline=None):
             if "t" in mode:
                 if is_2():
                     import io
-                    return io.TextIOWrapper(process.stdout, encoding=encoding, newline=newline)
+                    return io.TextIOWrapper(process.stdout.fileno(), encoding=encoding, newline=newline)
                     # import io
                     # return io.open(process.stdout, encoding=encoding, newline=newline)
                     # import codecs
