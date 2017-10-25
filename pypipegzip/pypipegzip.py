@@ -30,7 +30,7 @@ def is_2():
     return sys.version_info[0] == 2
 
 
-# noinspection PyShadowingBuiltins, PyUnusedLocal
+# noinspection PyShadowingBuiltins
 def open(filename, mode="rb", use_process=True, encoding='utf-8', newline=None):
     # type: (str, str, bool, str, Union[str, None]) -> Any
     if "r" in mode:
@@ -45,7 +45,9 @@ def open(filename, mode="rb", use_process=True, encoding='utf-8', newline=None):
             if "t" in mode:
                 if is_2():
                     import io
-                    return io.open(process.stdout, encoding=encoding, newline=newline)
+                    return io.TextIOWrapper(process.stdout, encoding=encoding, newline=newline)
+                    # import io
+                    # return io.open(process.stdout, encoding=encoding, newline=newline)
                     # import codecs
                     # return codecs.getreader(encoding=encoding)(process.stdout)
                 else:
