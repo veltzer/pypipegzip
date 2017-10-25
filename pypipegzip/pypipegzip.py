@@ -47,7 +47,7 @@ def open(filename, mode="rb", use_process=True, encoding='utf-8', newline=None):
                     # import io
                     # return io.TextIOWrapper(process.stdout.fileno(), encoding=encoding, newline=newline)
                     import io
-                    return io.open(process.stdout.fileno(), encoding=encoding, newline=newline)
+                    return io.open(process.stdout.fileno(), encoding=encoding, newline=newline, closefd=False)
                     # import codecs
                     # return codecs.getreader(encoding=encoding)(process.stdout)
                 else:
