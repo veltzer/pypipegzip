@@ -64,3 +64,5 @@ def open(filename, mode="rb", use_process=True, encoding='utf-8', newline=None):
             return gzip.open(filename, mode=mode, newline=newline)
         else:
             return gzip.open(filename, encoding=encoding, mode=mode, newline=newline)
+
+
