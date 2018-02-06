@@ -31,7 +31,7 @@ def is_2():
 
 
 # noinspection PyShadowingBuiltins
-def open(filename, mode="rb", use_process=True, encoding='utf-8', newline=None):
+def open(filename, mode="rb", use_process=False, encoding='utf-8', newline=None):
     # type: (str, str, bool, str, Union[str, None]) -> Any
     if "r" in mode:
         if use_process:

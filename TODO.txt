@@ -1,0 +1,6 @@
+Currently the processing of gzip with a pipe to gzip(1) is disabled by default because then the gzip(1)
+process is hangling until you read all of it's output. This causes problem to the process using this module.
+Bring this back once the issue is solved.
+
+How to reproduce the issue? Just create a gzipped file and read only the first 10 lines of it and shut down the program.
+You will notice a delay until the gzip(1) process is shut down too.
