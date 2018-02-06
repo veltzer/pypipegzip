@@ -1,6 +1,9 @@
-Currently the processing of gzip with a pipe to gzip(1) is disabled by default because then the gzip(1)
+Currently the processing of gzip with a pipe to zcat(1) is disabled by default because then the gzip(1)
 process is hangling until you read all of it's output. This causes problem to the process using this module.
 Bring this back once the issue is solved.
 
 How to reproduce the issue? Just create a gzipped file and read only the first 10 lines of it and shut down the program.
 You will notice a delay until the gzip(1) process is shut down too.
+
+Techincal note: we launch zcat(1) from the code but zcat(1) is just a bash script that launches gzip(1)
+with the right arguments. So we are really talking with a gzip(1) process.
