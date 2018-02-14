@@ -56,8 +56,14 @@ def open(filename, mode="rb", use_process=False, encoding='utf-8', newline=None)
             raise ValueError("please specify t or b in mode")
         else:
             if is_2():
-                # in python2 gzip.open does not have a 'newline' parameter...
-                return gzip.open(filename, mode=mode)
+                # in python2 gzip.open does not have a 'newline' parameter or the 'encoding'
+                # parameter...
+                if 'b' in mode:
+                    return gzip.open(filename, mode=mode)
+                else:
+                    handle = gzip.open(filename, mode='rb')
+                    import codecs
+                    return codecs.getreader(encoding=encoding)(handle)
             else:
                 return gzip.open(filename, encoding=encoding, mode=mode, newline=newline)
     if "w" in mode:
