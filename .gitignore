@@ -80,6 +80,3 @@ celerybeat-schedule
 
 # Rope project settings
 .ropeproject
-
-# pycharm
-/.idea/workspace.xml
