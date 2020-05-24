@@ -24,10 +24,7 @@ import subprocess
 from typing import Any, Union
 
 import sys
-
-
-def is_2():
-    return sys.version_info[0] == 2
+import io
 
 
 # noinspection PyShadowingBuiltins
@@ -43,33 +40,9 @@ def open(filename, mode="rb", use_process=False, encoding='utf-8', newline=None)
             if "b" in mode:
                 return process.stdout
             if "t" in mode:
-                if is_2():
-                    # import io
-                    # return io.TextIOWrapper(process.stdout.fileno(), encoding=encoding, newline=newline)
-                    import io
-                    return io.open(process.stdout.fileno(), encoding=encoding, newline=newline, closefd=False)
-                    # import codecs
-                    # return codecs.getreader(encoding=encoding)(process.stdout)
-                else:
-                    import io
-                    return io.TextIOWrapper(process.stdout, encoding=encoding, newline=newline)
+                return io.TextIOWrapper(process.stdout, encoding=encoding, newline=newline)
             raise ValueError("please specify t or b in mode")
         else:
-            if is_2():
-                # in python2 gzip.open does not have a 'newline' parameter or the 'encoding'
-                # parameter...
-                if 'b' in mode:
-                    return gzip.open(filename, mode=mode)
-                else:
-                    handle = gzip.open(filename, mode='rb')
-                    import codecs
-                    return codecs.getreader(encoding=encoding)(handle)
-            else:
-                return gzip.open(filename, encoding=encoding, mode=mode, newline=newline)
-    if "w" in mode:
-        if is_2():
-            return gzip.open(filename, mode=mode, newline=newline)
-        else:
             return gzip.open(filename, encoding=encoding, mode=mode, newline=newline)
-
-
+    if "w" in mode:
+        return gzip.open(filename, encoding=encoding, mode=mode, newline=newline)

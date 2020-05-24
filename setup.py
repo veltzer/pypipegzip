@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name='pypipegzip',
-    version='0.0.19',
+    version='0.0.20',
     description='faster read of gzip files using a pipe to zcat(1)',
     long_description='pypipegzip helps you read gzipped files faster by using a subprocess',
     url='https://veltzer.github.io/pypipegzip',
@@ -17,7 +17,6 @@ setuptools.setup(
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 2',
     ],
     keywords='pipe pipeline gzip read speed pypipegzip',
     packages=setuptools.find_packages(),
