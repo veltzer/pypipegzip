@@ -23,12 +23,10 @@ import subprocess
 
 from typing import Any, Union
 
-import sys
 import io
 
 
-# noinspection PyShadowingBuiltins
-def open(filename, mode="rb", use_process=False, encoding='utf-8', newline=None):
+def zipopen(filename, mode="rb", use_process=False, encoding='utf-8', newline=None):
     # type: (str, str, bool, str, Union[str, None]) -> Any
     if "r" in mode:
         if use_process:
@@ -42,7 +40,7 @@ def open(filename, mode="rb", use_process=False, encoding='utf-8', newline=None)
             if "t" in mode:
                 return io.TextIOWrapper(process.stdout, encoding=encoding, newline=newline)
             raise ValueError("please specify t or b in mode")
-        else:
-            return gzip.open(filename, encoding=encoding, mode=mode, newline=newline)
+        return gzip.open(filename, encoding=encoding, mode=mode, newline=newline)
     if "w" in mode:
         return gzip.open(filename, encoding=encoding, mode=mode, newline=newline)
+    raise ValueError("please specify r or w in mode")
