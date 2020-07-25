@@ -20,3 +20,5 @@
 faster read of gzip files using a pipe to zcat(1)
 
 project website: <https://veltzer.github.io/pypipegzip>
+
+
