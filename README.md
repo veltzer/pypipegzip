@@ -17,8 +17,11 @@
 ![Downloads](https://pepy.tech/badge/pypipegzip/week)
 
 
+
 faster read of gzip files using a pipe to zcat(1)
 
 project website: <https://veltzer.github.io/pypipegzip>
+
+chat with me at [![gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/veltzer/mark.veltzer)
 
 
