@@ -16,7 +16,12 @@
 ![Downloads](https://pepy.tech/badge/pypipegzip/month)
 ![Downloads](https://pepy.tech/badge/pypipegzip/week)
 
+[![Known Vulnerabilities](https://snyk.io/test/github/veltzer/pypipegzip/badge.svg?targetFile=requirements.txt)](https://snyk.io/test/github/veltzer/pypipegzip?targetFile=requirements.txt)
 
+
+Actions
+
+![build](https://github.com/veltzer/pypipegzip/workflows/build/badge.svg)
 
 faster read of gzip files using a pipe to zcat(1)
 

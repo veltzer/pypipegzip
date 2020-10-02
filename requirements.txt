@@ -6,5 +6,7 @@ pydmt
 Sphinx
 # test requirements
 pylint
+flake8
 pytest
+pytest-cov
 pyflakes
