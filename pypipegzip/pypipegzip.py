@@ -26,8 +26,8 @@ from typing import Any, Union
 import io
 
 
-def zipopen(filename, mode="rb", use_process=False, encoding='utf-8', newline=None):
-    # type: (str, str, bool, str, Union[str, None]) -> Any
+def zipopen(filename: str, mode: str="rb", use_process: bool=False,
+        encoding: str='utf-8', newline: Union[str, None]=None):
     if "r" in mode:
         if use_process:
             args = [
