@@ -12,11 +12,6 @@
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/pypipegzip)
 
 ![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
-![Downloads](https://pepy.tech/badge/pypipegzip)
-![Downloads](https://pepy.tech/badge/pypipegzip/month)
-![Downloads](https://pepy.tech/badge/pypipegzip/week)
-
-[![Known Vulnerabilities](https://snyk.io/test/github/veltzer/pypipegzip/badge.svg?targetFile=requirements.txt)](https://snyk.io/test/github/veltzer/pypipegzip?targetFile=requirements.txt)
 
 
 Actions
