@@ -13,9 +13,6 @@
 
 ![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
 
-
-Actions
-
 ![build](https://github.com/veltzer/pypipegzip/workflows/build/badge.svg)
 
 faster read of gzip files using a pipe to zcat(1)
