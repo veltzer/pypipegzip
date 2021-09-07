@@ -27,7 +27,7 @@ import io
 
 
 def zipopen(filename: str, mode: str="rb", use_process: bool=False,
-        encoding: str='utf-8', newline: Union[str, None]=None):
+        newline: Union[str, None]=None):
     if "r" in mode:
         if use_process:
             args = [
@@ -38,9 +38,9 @@ def zipopen(filename: str, mode: str="rb", use_process: bool=False,
             if "b" in mode:
                 return process.stdout
             if "t" in mode:
-                return io.TextIOWrapper(process.stdout, encoding=encoding, newline=newline)
+                return io.TextIOWrapper(process.stdout, newline=newline)
             raise ValueError("please specify t or b in mode")
-        return gzip.open(filename, encoding=encoding, mode=mode, newline=newline)
+        return gzip.open(filename, mode=mode, newline=newline)
     if "w" in mode:
-        return gzip.open(filename, encoding=encoding, mode=mode, newline=newline)
+        return gzip.open(filename, mode=mode, newline=newline)
     raise ValueError("please specify r or w in mode")
