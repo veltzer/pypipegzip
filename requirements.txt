@@ -4,6 +4,7 @@ pyclassifiers
 pypitools
 pydmt
 Sphinx
+pymakehelper
 # test requirements
 pylint
 flake8
