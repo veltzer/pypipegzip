@@ -21,24 +21,23 @@ sys     4m17.796s
 import gzip
 import subprocess
 
-from typing import Any, Union
+from typing import Union
 
 import io
 
 
-def zipopen(filename: str, mode: str="rb", use_process: bool=False,
-        newline: Union[str, None]=None):
+def zipopen(filename: str, mode: str = "rb", use_process: bool = False, newline: Union[str, None] = None):
     if "r" in mode:
         if use_process:
             args = [
                 "/bin/zcat",
                 filename,
             ]
-            process = subprocess.Popen(args, stdout=subprocess.PIPE)
-            if "b" in mode:
-                return process.stdout
-            if "t" in mode:
-                return io.TextIOWrapper(process.stdout, newline=newline)
+            with subprocess.Popen(args, stdout=subprocess.PIPE) as process:
+                if "b" in mode:
+                    return process.stdout
+                if "t" in mode:
+                    return io.TextIOWrapper(process.stdout, newline=newline)
             raise ValueError("please specify t or b in mode")
         return gzip.open(filename, mode=mode, newline=newline)
     if "w" in mode:
