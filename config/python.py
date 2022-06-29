@@ -13,4 +13,5 @@ test_requires = [
     "pytest",
     "pytest-cov",
     "pyflakes",
+    "mypy",
 ]
