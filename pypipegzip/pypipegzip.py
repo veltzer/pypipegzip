@@ -34,6 +34,7 @@ def zipopen(filename: str, mode: str = "rb", use_process: bool = False, newline:
                 filename,
             ]
             with subprocess.Popen(args, stdout=subprocess.PIPE) as process:
+                assert process.stdout is not None
                 if "b" in mode:
                     return process.stdout
                 if "t" in mode:
