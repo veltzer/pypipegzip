@@ -1,15 +1,19 @@
-dev_requires = [
-    "pypitools",
-]
-config_requires = [
+from typing import List
+
+
+config_requires: List[str] = [
     "pyclassifiers",
 ]
-make_requires = [
+dev_requires: List[str] = [
+    "pypitools",
+]
+install_requires: List[str] = []
+make_requires: List[str] = [
     "pyclassifiers",
     "pymakehelper",
     "pydmt",
 ]
-test_requires = [
+test_requires: List[str] = [
     "pylint",
     "flake8",
     "pytest",
@@ -17,3 +21,4 @@ test_requires = [
     "pyflakes",
     "mypy",
 ]
+requires = config_requires + install_requires + make_requires + test_requires
