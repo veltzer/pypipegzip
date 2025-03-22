@@ -1,3 +1,4 @@
+""" project definitions """
 name = "pypipegzip"
 description_short = "faster read of gzip files using a pipe to zcat(1)"
 keywords = [
