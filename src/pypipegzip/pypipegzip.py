@@ -26,7 +26,7 @@ from typing import Union
 import io
 
 
-def zipopen(filename: str, mode: str = "rb", use_process: bool = False, newline: Union[str, None] = None):
+def zipopen(filename: str, mode: str = "rb", use_process: bool = False, newline: str | None = None):
     if "r" in mode:
         if use_process:
             args = [
