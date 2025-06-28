@@ -21,8 +21,6 @@ sys     4m17.796s
 import gzip
 import subprocess
 
-from typing import Union
-
 import io
 
 
