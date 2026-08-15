@@ -19,9 +19,8 @@ user    32m2.292s
 sys     4m17.796s
 """
 import gzip
-import subprocess
-
 import io
+import subprocess
 
 
 def zipopen(filename: str, mode: str = "rb", use_process: bool = False, newline: str | None = None):
