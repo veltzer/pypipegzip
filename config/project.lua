@@ -8,3 +8,4 @@ KEYWORDS = {
     "speed",
     "pypipegzip",
 }
+PYPI = true
