@@ -5,6 +5,8 @@ import os
 import tempfile
 import unittest
 
+import pytest
+
 from pypipegzip.pypipegzip import zipopen
 
 
@@ -16,7 +18,7 @@ class ZipopenTests(unittest.TestCase):
             with zipopen(name, mode="wb") as stream:
                 stream.write(payload)
             with zipopen(name, mode="rb") as stream:
-                self.assertEqual(stream.read(), payload)
+                assert stream.read() == payload
 
     def test_write_then_read_text_roundtrip(self):
         with tempfile.TemporaryDirectory() as d:
@@ -24,12 +26,12 @@ class ZipopenTests(unittest.TestCase):
             with zipopen(name, mode="wt") as stream:
                 stream.write("line one\nline two\n")
             with zipopen(name, mode="rt") as stream:
-                self.assertEqual(stream.read(), "line one\nline two\n")
+                assert stream.read() == "line one\nline two\n"
 
     def test_invalid_mode_raises(self):
         with tempfile.TemporaryDirectory() as d:
             name = os.path.join(d, "data.gz")
-            with self.assertRaises(ValueError):
+            with pytest.raises(ValueError, match="please specify r or w in mode"):
                 zipopen(name, mode="x")
 
     def test_read_produces_real_gzip(self):
@@ -39,4 +41,4 @@ class ZipopenTests(unittest.TestCase):
             with zipopen(name, mode="wb") as stream:
                 stream.write(b"gzip content")
             with gzip.open(name, mode="rb") as stream:
-                self.assertEqual(stream.read(), b"gzip content")
+                assert stream.read() == b"gzip content"
