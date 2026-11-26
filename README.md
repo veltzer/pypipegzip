@@ -9,7 +9,7 @@ project website: <https://veltzer.github.io/pypipegzip>
 
 author: Mark Veltzer
 
-version: 0.0.24
+version: 0.0.25
 
 ## github
 
